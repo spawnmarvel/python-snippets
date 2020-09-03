@@ -3,4 +3,4 @@
 ## Some useful and some for testing
 
 ## API
-![Screenshot](api_gui.png)
+![Screenshot](api_gui.jpg)
