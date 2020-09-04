@@ -53,6 +53,9 @@ def put_id(t_id):
         # The raw data is passed in to the Flask application from the WSGI server as request.stream. The length of the stream is in the Content-Length header.
         length = request.headers["Content-Length"]
         rv = request.get_data()
+        new_data = str(rv)
+        # add new data
+        print("update this data " + new_data)
         print(str(rv) + str(length))
         result_data = {"PUT":200}
 
@@ -73,6 +76,9 @@ def post_id():
         # The raw data is passed in to the Flask application from the WSGI server as request.stream. The length of the stream is in the Content-Length header.
         length = request.headers["Content-Length"]
         rv = request.get_data()
+        new_data = str(rv)
+        # add new data
+        print("adding this data " + new_data)
         print(str(rv) + str(length))
         result_data = {"POST":200}
 
