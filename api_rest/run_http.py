@@ -63,7 +63,7 @@ def put_id(t_id,data):
     print(response.status, response.reason)
     conn.close()
 
-# POST NOT DONE
+# POST 
 def post_id():
     print("POST ID")
     data = {"desc":"new day" }
