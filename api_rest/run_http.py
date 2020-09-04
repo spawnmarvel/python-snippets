@@ -1,4 +1,4 @@
-import http.client
+import http.client, urllib.parse
 import json
 # https://docs.python.org/3/library/http.client.html
 # GET HTTPS
@@ -17,6 +17,7 @@ def get_all():
     print(json_data)
     #for t in json_data["tasks"]:
     #    print(t)
+    print(response.status, response.reason)
     conn.close()
 
 # GET ID
@@ -30,6 +31,7 @@ def get_id(t_id):
     print(json_data)
     # for t in json_data["tasks"]:
     #     print(t)
+    print(response.status, response.reason)
     conn.close()
 
 
@@ -44,19 +46,60 @@ def delete_id(t_id):
     print(json_data)
     # for t in json_data["tasks"]:
     #     print(t)
+    print(response.status, response.reason)
+    conn.close()
+
+# PUT
+def put_id(t_id,data):
+    print("PUT ID")
+    conn = http.client.HTTPConnection("localhost",8080) # accepts a hostname, not url
+    conn.request("PUT", "/api/tasks/" + str(t_id),str(data))
+    print(conn)
+    response = conn.getresponse()
+    json_data = json.loads(str(response.read(), "utf-8"))
+    print(json_data)
+    # for t in json_data["tasks"]:
+    #     print(t)
+    print(response.status, response.reason)
+    conn.close()
+
+# POST NOT DONE
+def post_id():
+    print("POST ID")
+    data = {"desc":"new day" }
+    # to_bytes= bytes(json.dumps(data), "utf8")
+    json_data = json.dumps(data)
+    params = urllib.parse.urlencode({})
+    # params = urllib.parse.urlencode(data)
+    headers = {"Content-Type": "application/json"}
+    # headers = {"Content-type": "application/x-www-form-urlencoded","Accept": "text/plain"}
+
+    conn = http.client.HTTPConnection("localhost",8080) # accepts a hostname, not url
+    conn.request("POST", "/api/tasks",json_data, headers)
+    print(conn)
+    response = conn.getresponse()
+    # json_data = json.loads(str(response.read(), "utf-8"))
+    # print(json_data)
+    # for t in json_data["tasks"]:
+    #     print(t)
+    print(response.status, response.reason)
     conn.close()
 
 
-# PUT
-
-# POST
 
 def main():
     get_all()
     print("\n")
     get_id(1)
     print("\n")
+    get_id(45)
+    print("\n")
     delete_id(1)
+    print("\n")
+    data = {"t_id":0, "desc":"work" }
+    put_id(0,data)
+    print("\n")
+    post_id()
 
 if __name__ == "__main__":
     main()

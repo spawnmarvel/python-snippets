@@ -2,6 +2,9 @@
 from flask import Flask
 from flask import jsonify
 from flask import request
+from flask import make_response
+
+
 app = Flask(__name__)
 
 tasks = [
@@ -14,7 +17,7 @@ tasks = [
 @app.route("/api/tasks", methods=["GET"])
 def get_all():
     """ http://localhost:8080/api/tasks """
-    return jsonify({'tasks': tasks})
+    return jsonify({"tasks": tasks})
 
 @app.route("/api/tasks/<int:t_id>", methods=["GET"])
 def get_id(t_id):
@@ -24,7 +27,7 @@ def get_id(t_id):
         for i in tasks:
             if i["t_id"] == t_id:
                 result_data = i
-    return jsonify({'tasks': result_data})
+    return jsonify({"tasks": result_data})
 
 @app.route("/api/tasks/<int:t_id>", methods=["DELETE"])
 def delete_id(t_id):
@@ -34,17 +37,52 @@ def delete_id(t_id):
          for i in tasks:
             if i["t_id"] == t_id:
                 result_data = {"DELETE":i}
-    return jsonify({'tasks': result_data})
+    return jsonify({"tasks": result_data})
 
 @app.route("/api/tasks/<int:t_id>", methods=["PUT"])
-def put_id():
-    pass
+def put_id(t_id):
+    result_data = None
+    if request.method == "PUT":
+        # Use request.get_json() to get posted JSON data.
+        # rv = request.get_json()
+        # Use request.form to get data when submitting a form with the POST method.
+        # rv = request.form.get('name', '')
+        # Use request.args to get data passed in the query string of the URL, like when submitting a form with the GET method.
+        # rv = request.args.get("name", "")
 
-@app.route("/api/tasks/<int:t_id>", methods=["POST"])
+        # The raw data is passed in to the Flask application from the WSGI server as request.stream. The length of the stream is in the Content-Length header.
+        length = request.headers["Content-Length"]
+        rv = request.get_data()
+        print(str(rv) + str(length))
+        result_data = {"PUT":200}
+
+    return jsonify({"tasks": result_data})
+
+
+@app.route("/api/tasks", methods=["POST"])
 def post_id():
-    pass
+    result_data = None
+    if request.method == "POST":
+        # Use request.get_json() to get posted JSON data.
+        # rv = request.get_json()
+        # Use request.form to get data when submitting a form with the POST method.
+        # rv = request.form.get('name', '')
+        # Use request.args to get data passed in the query string of the URL, like when submitting a form with the GET method.
+        # rv = request.args.get("name", "")
+
+        # The raw data is passed in to the Flask application from the WSGI server as request.stream. The length of the stream is in the Content-Length header.
+        length = request.headers["Content-Length"]
+        rv = request.get_data()
+        print(str(rv) + str(length))
+        result_data = {"POST":200}
+
+    return jsonify({"tasks": result_data})
 
 
+
+@app.errorhandler(404)
+def not_found(error):
+    return make_response(jsonify({'error': 'Not found'}), 404)
 
 if __name__ == '__main__':
     app.run(debug=True, port=8080)
