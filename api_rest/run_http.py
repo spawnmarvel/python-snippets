@@ -64,9 +64,8 @@ def put_id(t_id,data):
     conn.close()
 
 # POST 
-def post_id():
+def post_id(data):
     print("POST ID")
-    data = {"desc":"new day" }
     # to_bytes= bytes(json.dumps(data), "utf8")
     json_data = json.dumps(data)
     params = urllib.parse.urlencode({})
@@ -99,7 +98,8 @@ def main():
     data = {"t_id":0, "desc":"work" }
     put_id(0,data)
     print("\n")
-    post_id()
+    data = {"desc":"new day" }
+    post_id(data)
 
 if __name__ == "__main__":
     main()
