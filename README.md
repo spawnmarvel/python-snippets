@@ -6,7 +6,6 @@
 In api rest:
 Run first the server
 * run_server.py
-Then 
 * run_http.py
 [Flask docs] https://flask.palletsprojects.com/en/1.1.x/
 
