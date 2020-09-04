@@ -3,10 +3,9 @@
 ## Some useful and some for testing
 
 ## API (api_rest with )
+In api rest, run first the server, run_server.py, then run_http.py
 [Flask docs] https://flask.palletsprojects.com/en/1.1.x/
 
 [Flask API] https://www.flaskapi.org/
 
 [Design Restful API] https://blog.miguelgrinberg.com/post/designing-a-restful-api-with-python-and-flask
-
-![Screenshot](api_gui.jpg)

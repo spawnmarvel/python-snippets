@@ -1,62 +1,51 @@
 # https://blog.miguelgrinberg.com/post/designing-a-restful-api-with-python-and-flask
-# https://www.flaskapi.org/
-#!flask/bin/python
-from flask import Flask, jsonify
-from flask_api import FlaskAPI
-# Flask API is a drop-in replacement for Flask that provides an implementation of browsable APIs similar to what Django REST framework provides. 
-# It gives you properly content negotiated-responses and smart request parsing:
+from flask import Flask
+from flask import jsonify
+from flask import request
+app = Flask(__name__)
 
-from flask import request, url_for
-from flask_api import FlaskAPI, status, exceptions
+tasks = [
+    {"t_id":0, "desc":"wash" },
+    {"t_id":1, "desc":"eat" },
+    {"t_id":2, "desc":"sleep" }
+]
+        
 
-app = FlaskAPI(__name__)
+@app.route("/api/tasks", methods=["GET"])
+def get_all():
+    """ http://localhost:8080/api/tasks """
+    return jsonify({'tasks': tasks})
 
+@app.route("/api/tasks/<int:t_id>", methods=["GET"])
+def get_id(t_id):
+    """ http://localhost:8080/api/tasks/2 """
+    result_data = None
+    if request.method == "GET":
+        for i in tasks:
+            if i["t_id"] == t_id:
+                result_data = i
+    return jsonify({'tasks': result_data})
 
-notes = {
-    0: "First note"
-}
+@app.route("/api/tasks/<int:t_id>", methods=["DELETE"])
+def delete_id(t_id):
+    """ http://localhost:8080/api/tasks/2 """
+    result_data = None
+    if request.method == "DELETE":
+         for i in tasks:
+            if i["t_id"] == t_id:
+                result_data = {"DELETE":i}
+    return jsonify({'tasks': result_data})
 
-def note_repr(key):
-    return {
-        'url': request.host_url.rstrip('/') + url_for('notes_detail', key=key),
-        'text': notes[key]
-    }
+@app.route("/api/tasks/<int:t_id>", methods=["PUT"])
+def put_id():
+    pass
 
-
-@app.route("/", methods=['GET', 'POST'])
-def notes_list():
-    """
-    List or create notes.
-    """
-    if request.method == 'POST':
-        note = str(request.data.get('text', ''))
-        idx = max(notes.keys()) + 1
-        notes[idx] = note
-        return note_repr(idx), status.HTTP_201_CREATED
-
-    # request.method == 'GET'
-    return [note_repr(idx) for idx in sorted(notes.keys())]
-
-
-@app.route("/<int:key>/", methods=['GET', 'PUT', 'DELETE'])
-def notes_detail(key):
-    """
-    Retrieve, update or delete note instances.
-    """
-    if request.method == 'PUT':
-        note = str(request.data.get('text', ''))
-        notes[key] = note
-        return note_repr(key)
-
-    elif request.method == 'DELETE':
-        notes.pop(key, None)
-        return '', status.HTTP_204_NO_CONTENT
-
-    # request.method == 'GET'
-    if key not in notes:
-        raise exceptions.NotFound()
-    return note_repr(key)
+@app.route("/api/tasks/<int:t_id>", methods=["POST"])
+def post_id():
+    pass
 
 
-if __name__ == "__main__":
-    app.run(debug=True)
+
+if __name__ == '__main__':
+    app.run(debug=True, port=8080)
+
