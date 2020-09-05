@@ -77,8 +77,8 @@ def post_id(data):
     conn.request("POST", "/api/tasks",json_data, headers)
     print(conn)
     response = conn.getresponse()
-    # json_data = json.loads(str(response.read(), "utf-8"))
-    # print(json_data)
+    json_data = json.loads(str(response.read(), "utf-8"))
+    print(json_data)
     # for t in json_data["tasks"]:
     #     print(t)
     print(response.status, response.reason)

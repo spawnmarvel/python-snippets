@@ -57,7 +57,7 @@ def put_id(t_id):
         # add new data
         print("update this data " + new_data)
         print(str(rv) + str(length))
-        result_data = {"PUT":200}
+        result_data = {"PUT":200, "data":new_data}
 
     return jsonify({"tasks": result_data})
 
@@ -80,7 +80,7 @@ def post_id():
         # add new data
         print("adding this data " + new_data)
         print(str(rv) + str(length))
-        result_data = {"POST":200}
+        result_data = {"POST":200,"data":new_data}
 
     return jsonify({"tasks": result_data})
 
