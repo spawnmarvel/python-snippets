@@ -13,5 +13,16 @@ url = "......."
 
 response = requests.get(url, auth=HTTPKerberosAuth(), verify= False)
 
+# or if proxy error
+# proxies = {"http": "", "https":""}
+
+
+# or if we need the response.text back, the data
+# response = requests.get(url, auth=HTTPKerberosAuth(force_preemptive=True), verify= False) 
+
+# may have to run twice or make a initial call first, then make the actual call, or store the token from the first call, 
+# if there is a token for more data
+# Or it just takes a bit time
+# The server is giving you a 401 challenge - and the client (usually a browser or even curl) provides the credentials in a subsequent call.
 print(response)
 print(response.text)
