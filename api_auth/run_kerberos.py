@@ -23,6 +23,8 @@ response = requests.get(url, auth=HTTPKerberosAuth(), verify= False)
 # may have to run twice or make a initial call first, then make the actual call, or store the token from the first call, 
 # if there is a token for more data
 # Or it just takes a bit time
-# The server is giving you a 401 challenge - and the client (usually a browser or even curl) provides the credentials in a subsequent call.
+# The server is giving you a 401 challenge - and the client (usually a browser or even curl) 
+# provides the credentials in a subsequent call. If you are already logged in at your domain 
+# - try forcing a pre-emptive hop, i.e. you’d carry your Kerberos ticket with your call and the server will not give you a 401 challenge:
 print(response)
 print(response.text)
