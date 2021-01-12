@@ -1,6 +1,7 @@
 from requests_ntlm import HttpNtlmAuth
 import requests
 import urllib.request, urllib.error, urllib.parse, sys
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 url = "......"
 # run_ntlm user password

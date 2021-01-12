@@ -7,7 +7,8 @@ Client authentication failures will be communicated to the caller by returning t
 In short, the library will handle the "negotiations" of Kerberos authentication, but ensuring that an initial TGT is available and valid is the responsibility of the user.
 '''
 import requests
-from requests_kerberos import HTTPKerberosAuth, REQUIRED
+from requests_kerberos import HTTPKerberosAuth
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 url = "......."
 
