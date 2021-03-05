@@ -28,4 +28,5 @@ def insert_random_nr():
     cnxn.commit()
 
 insert_random_nr()
+print(get_version())
 
