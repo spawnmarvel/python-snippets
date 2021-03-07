@@ -24,7 +24,7 @@ ADD p_plant VARCHAR (4);
 --good
 
 
--- get all criteria history to a pump
+-- get all criterias ever present
 /****** Script for SelectTopNRows command from SSMS  ******/
 SELECT TOP (1000) p.[p_id]
       ,p.[p_name]
@@ -39,7 +39,7 @@ SELECT TOP (1000) p.[p_id]
   INNER JOIN TestGreenWorld.test.criteria c ON c.c_w_id = p.p_id
   and p.p_id = 1
   
-  -- get running criteriato a pump
+  -- get running criteria
   /****** Script for SelectTopNRows command from SSMS  ******/
 SELECT TOP (1000) p.[p_id]
       ,p.[p_name]
