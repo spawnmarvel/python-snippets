@@ -75,6 +75,13 @@ SELECT TOP (1000) p.[p_id]
   --
 
  -- get running cri where start is between 30 min from a date for all pumps
+ -- db
+ --c_id	c_name	c_start	c_end	c_w_id	c_status
+--1	start	2021-01-01 12:00:00.000	2021-01-05 12:59:00.000	1	0
+--2	run	    2021-01-05 13:00:00.000	NULL	1	1
+--3	start	2021-01-05 13:10:00.000	NULL	2	1
+--4	start	2021-01-04 00:00:00.000	NULL	3	0
+
 SELECT TOP (1000) p.[p_id]
       ,p.[p_name]
       ,p.[p_plant]
@@ -89,5 +96,7 @@ SELECT TOP (1000) p.[p_id]
   where c.c_start > DATEADD(mi, -30, '2021-01-05 12:40')
   --and p.p_id = 1
   
- 
+-- returns
+-- 1	P1	EAR	2	run	1	1	2021-01-05 13:00:00.000	NULL
+-- 2	P2	EAR	3	start	1	2	2021-01-05 13:10:00.000	NULL
 
