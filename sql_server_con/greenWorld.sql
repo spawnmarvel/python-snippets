@@ -74,7 +74,7 @@ SELECT TOP (1000) p.[p_id]
 
   --
 
- -- get running cri where start is between 30 min from a date for all pumps
+ -- get running cri where start is + 30 min from a date for all pumps
  -- db
  --c_id	c_name	c_start	c_end	c_w_id	c_status
 --1	start	2021-01-01 12:00:00.000	2021-01-05 12:59:00.000	1	0
@@ -105,8 +105,7 @@ select DATEADD(mi, 30, '2021-01-05 12:20')
 select DATEADD(mi, -30, '2021-01-05 12:20')
 -- 2021-01-05 11:50:00.000
 
--- get running cri where start is between 30 min from a date for all pumps with var
-
+-- get running cri where start is + 30 min from a date for all pumps with var
 DECLARE @dt datetime = '2021-01-05 12:20';
 
 SELECT TOP (1000) p.[p_id]
