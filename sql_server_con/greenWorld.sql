@@ -93,10 +93,32 @@ SELECT TOP (1000) p.[p_id]
 	  ,c.c_end
   FROM [TestGreenWorld].[test].[pump] as p
   INNER JOIN TestGreenWorld.test.criteria c ON c.c_w_id = p.p_id
-  where c.c_start > DATEADD(mi, -30, '2021-01-05 12:40')
+  where c.c_start > DATEADD(mi, 30, '2021-01-05 12:20') -- is 2021-01-05 12:50:00.000
   --and p.p_id = 1
   
 -- returns
 -- 1	P1	EAR	2	run	1	1	2021-01-05 13:00:00.000	NULL
 -- 2	P2	EAR	3	start	1	2	2021-01-05 13:10:00.000	NULL
 
+select DATEADD(mi, 30, '2021-01-05 12:20')
+-- 2021-01-05 12:50:00.000
+select DATEADD(mi, -30, '2021-01-05 12:20')
+-- 2021-01-05 11:50:00.000
+
+-- get running cri where start is between 30 min from a date for all pumps with var
+
+DECLARE @dt datetime = '2021-01-05 12:20';
+
+SELECT TOP (1000) p.[p_id]
+      ,p.[p_name]
+      ,p.[p_plant]
+	  ,c.c_id
+	  ,c.c_name
+	  ,c.c_status
+	  ,c.c_w_id
+	  ,c.c_start
+	  ,c.c_end
+  FROM [TestGreenWorld].[test].[pump] as p
+  INNER JOIN TestGreenWorld.test.criteria c ON c.c_w_id = p.p_id
+  where c.c_start > DATEADD(mi, 30, @dt)
+  --and p.p_id = 1
