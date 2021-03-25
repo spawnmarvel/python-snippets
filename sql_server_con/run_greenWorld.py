@@ -20,13 +20,13 @@ def get_version():
         row = cursor.fetchone()
 
 
-def insert_random_nr():
+def insert_ cri():
     ran_number = random.randint(20,150)
     current_time_utc = datetime.datetime.utcnow()
     current_time_utc.strftime("%Y-%m-%d %H:%M:%S")
-    cursor.execute("""INSERT INTO dbo.monitoring_t (m_time, m_value, m_name) VALUES (?,?,?)""", current_time_utc, ran_number, "TAG1") 
+    cursor.execute("""INSERT INTO test.criteria (c_name, c_start, c_end, c_w_id, c_status) VALUES (?,?,?)""", current_time_utc, ran_number, "TAG1") 
     cnxn.commit()
 
-insert_random_nr()
+insert_ cri()
 print(get_version())
 
