@@ -12,16 +12,27 @@ tasks = [
     {"t_id":1, "desc":"eat" },
     {"t_id":2, "desc":"sleep" }
 ]
-        
+
+
+def get_tasks_cache():
+    global tasks
+    for cache_dict in tasks:
+        print("Cache L: " + str(cache_dict))
+        for k, v in cache_dict.items():
+            print(" Cache D: " + str(k) + ";" + str(v))
+
 
 @app.route("/api/tasks", methods=["GET"])
 def get_all():
     """ http://localhost:8080/api/tasks """
+    global tasks
+    get_tasks_cache()
     return jsonify({"tasks": tasks})
 
 @app.route("/api/tasks/<int:t_id>", methods=["GET"])
 def get_id(t_id):
     """ http://localhost:8080/api/tasks/2 """
+    global tasks
     result_data = None
     if request.method == "GET":
         for i in tasks:
@@ -31,6 +42,7 @@ def get_id(t_id):
 
 @app.route("/api/tasks/<int:t_id>", methods=["DELETE"])
 def delete_id(t_id):
+    global tasks
     """ http://localhost:8080/api/tasks/2 """
     result_data = None
     if request.method == "DELETE":

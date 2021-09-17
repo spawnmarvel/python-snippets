@@ -8,6 +8,7 @@ import json
 
 # GET ALL
 def get_all():
+    """Gets all tasks """
     print("GET ALL")
     conn = http.client.HTTPConnection("localhost",8080) # accepts a hostname, not url
     conn.request("GET", "/api/tasks")
@@ -22,7 +23,8 @@ def get_all():
 
 # GET ID
 def get_id(t_id):
-    print("GET ID")
+    """"Returns the information from ID, NONE if ID does not exists"""
+    print("GET ID " +str(t_id))
     conn = http.client.HTTPConnection("localhost",8080) # accepts a hostname, not url
     conn.request("GET", "/api/tasks/" + str(t_id))
     print(conn)
@@ -37,7 +39,8 @@ def get_id(t_id):
 
 # DELETE
 def delete_id(t_id):
-    print("DELETE ID")
+    """"Deletes the information from ID, NONE if ID does not exists"""
+    print("DELETE ID " + str(t_id))
     conn = http.client.HTTPConnection("localhost",8080) # accepts a hostname, not url
     conn.request("DELETE", "/api/tasks/" + str(t_id))
     print(conn)
@@ -51,7 +54,7 @@ def delete_id(t_id):
 
 # PUT
 def put_id(t_id,data):
-    print("PUT ID")
+    print("PUT ID " + str(t_id))
     conn = http.client.HTTPConnection("localhost",8080) # accepts a hostname, not url
     conn.request("PUT", "/api/tasks/" + str(t_id),str(data))
     print(conn)
@@ -95,11 +98,14 @@ def main():
     print("\n")
     delete_id(1)
     print("\n")
-    data = {"t_id":0, "desc":"work" }
-    put_id(0,data)
+    # Get all again, so verify that ID 1 is deleted
+    get_all()
     print("\n")
-    data = {"desc":"new day" }
-    post_id(data)
+    # data = {"t_id":0, "desc":"work" }
+    # put_id(0,data)
+    # print("\n")
+    # data = {"desc":"new day" }
+    # post_id(data)
 
 if __name__ == "__main__":
     main()

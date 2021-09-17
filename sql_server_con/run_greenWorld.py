@@ -6,8 +6,8 @@ import datetime
 
 server = r"localhost\sqlexpress"
 database = "TestGreenWorld" 
-username = "misp" # was granted insert
-password = "astring6r473" # 
+username = "misp" 
+password = "astring6r473"
 cnxn = pyodbc.connect("DRIVER={ODBC Driver 17 for SQL Server};SERVER="+server+";DATABASE="+database+";UID="+username+";PWD="+ password)
 cursor = cnxn.cursor()
 
@@ -35,6 +35,7 @@ def insert_pump():
 # print(get_version())
 # insert_pump()
 print(get_pump())
+
 
 
 
