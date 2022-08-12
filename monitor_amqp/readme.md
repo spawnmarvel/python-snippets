@@ -21,8 +21,12 @@ Most of the GET queries return many fields perobject. The second part of this gu
 
 Make a VM in Azure
 1 Erlang
+
 2 RabbitMQ
+
 3 Enable management
+
 4 Test Python script
+
 5 Run as schedule task
 
