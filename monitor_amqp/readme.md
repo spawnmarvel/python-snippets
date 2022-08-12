@@ -30,3 +30,6 @@ Make a VM in Azure
 
 5 Run as schedule task
 
+
+yeaaa.
+
