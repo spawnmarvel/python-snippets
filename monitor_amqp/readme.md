@@ -26,7 +26,7 @@ Make a VM in Azure
 
 3 Enable management
 
-4 Test Python script
+4 Install Python and Test Python script
 
 5 Run as schedule task
 
