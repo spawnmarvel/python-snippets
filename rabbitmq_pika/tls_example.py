@@ -10,6 +10,20 @@ import logging
 context = ssl.SSLContext(ssl.PROTOCOL_TLS_CLIENT)
 
 context.verify_mode = ssl.CERT_REQUIRED
+
+# followed
+# https://www.rabbitmq.com/ssl.html#manual-certificate-generation
+# rabbit mq server was running ssl:
+# rabbitmq.conf
+
+# listeners.ssl.default = 5671
+
+# ssl_options.cacertfile = C:\testca\ca_certificate.pem
+# ssl_options.certfile   = C:\testca\server\server_certificate.pem
+# ssl_options.keyfile    = C:\testca\server\private_key.pem
+# ssl_options.verify     = verify_none
+# ssl_options.fail_if_no_peer_cert = false
+
 context.load_verify_locations('C:/testca/ca_certificate.pem')
 
 # https://pika.readthedocs.io/en/stable/modules/parameters.html
