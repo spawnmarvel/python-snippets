@@ -10,6 +10,15 @@ class FridayMail():
         self.file_exists = None
 
     def get_key(self):
+        """Example json 
+        {
+            "configuration": {
+            "mailfrom": "xxx@mail.com",
+            "mailto": "yyyyy@mail.com",
+            "usercred": "xxxxyyyyzzzzz"
+            }
+        }
+        """
         try:
             # could store this in keyvault or an env
             with open("config.json") as json_file:
