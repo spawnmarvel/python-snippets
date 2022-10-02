@@ -1,0 +1,12 @@
+https://realpython.com/python-send-email/
+
+If you don’t want to lower the security settings of your Gmail account, check out Google’s documentation on how to gain access credentials for your Python script, using the OAuth2 authorization framework.
+
+
+https://developers.google.com/gmail/api/quickstart/python
+
+https://stackoverflow.com/questions/72480454/sending-email-with-python-google-disables-less-secure-apps
+
+2-step verification turn on then head over to App password
+
+
