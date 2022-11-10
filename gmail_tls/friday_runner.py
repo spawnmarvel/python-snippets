@@ -52,7 +52,8 @@ class FridayMail():
 
                     connection.sendmail(from_addr=email_address, to_addrs=mail_people, 
                     msg= "subject:It's Friday!! Stay hard and have fun: \n\n Please view all URLS \n\n https://www.hulen.no/ \n https://kvarteret.no/ \n https://www.kunsthall.no/no/arrangement/ \n https://www.visitbergen.com/hva-skjer/konserter   ")
-                    logging.info("sent to: " + str(mail_people))
+                    rv = mail_people.split("@")
+                    logging.info("sent to: " + str(rv[1]))
         except Exception as ex:
             print(ex)
 

@@ -7,5 +7,6 @@
 2022-11-10 15:09:22,680 - root - WARNING - This will get logged to a file
 2022-11-10 15:10:31,839 - root - WARNING - This will get logged to a file
 2022-11-10 15:14:45,454 - root - WARNING - This will get logged to a file
-2022-11-10 15:14:47,657 - root - INFO - sent to: espenkleivane@gmail.com
-2022-11-10 15:14:48,559 - root - INFO - sent to: olekleivane@gmail.com
+2022-11-10 15:24:34,247 - root - WARNING - This will get logged to a file
+2022-11-10 15:24:36,520 - root - INFO - sent to: gmail.com
+2022-11-10 15:24:37,269 - root - INFO - sent to: gmail.com
