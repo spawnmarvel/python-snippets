@@ -31,15 +31,15 @@ credential = pika.PlainCredentials("baduser", "wXaY0X5c94fV")
 # create the vhost at rabbitmq
 # http://localhost:15672/#/vhosts
 
-conn_parameters = pika.ConnectionParameters(host="hostname-for-rabbitmq",virtual_host="clienthost", ssl_options=pika.SSLOptions(context), credentials=credential)
+conn_parameters = pika.ConnectionParameters(host="a-host",virtual_host="clienthost", ssl_options=pika.SSLOptions(context), credentials=credential)
 
 conn = pika.BlockingConnection(conn_parameters)
 print("\n"+ str(conn))
 ch = conn.channel()
 ch.queue_declare(queue="ssl-queue", durable=True)
-ch.queue_bind("ssl-queue", exchange="amq.direct", routing_key="ssl-q")
+ch.queue_bind("ssl-queue", exchange="amq.topic", routing_key="ssl-q")
 
-ch.basic_publish(exchange="amq.direct", routing_key="ssl-q", body="ssl message",  properties=pika.BasicProperties(content_type='text/plain',delivery_mode=pika.DeliveryMode.Transient))
+ch.basic_publish(exchange="amq.topic", routing_key="ssl-q", body="ssl message",  properties=pika.BasicProperties(content_type='text/plain',delivery_mode=pika.DeliveryMode.Transient))
 get_queue_info = ch.basic_get("ssl-queue")
 print("\n"+ str(get_queue_info))
 conn.close()
