@@ -10,3 +10,6 @@
 2022-11-10 15:24:34,247 - root - WARNING - This will get logged to a file
 2022-11-10 15:24:36,520 - root - INFO - sent to: gmail.com
 2022-11-10 15:24:37,269 - root - INFO - sent to: gmail.com
+2022-12-29 15:28:53,387 - root - WARNING - This will get logged to a file
+2022-12-29 15:28:54,939 - root - INFO - sent to: gmail.com
+2022-12-29 15:28:55,781 - root - INFO - sent to: gmail.com
